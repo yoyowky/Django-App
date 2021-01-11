@@ -18,6 +18,12 @@ from .models import Product
 
 
 def product_create_view(request):
+    # print('get11111', request.GET)
+    # print('post11111', request.POST)
+    if request.method == "POST":
+        my_new_title = request.POST.get('title')
+        print('my_new_title', my_new_title)
+        # Product.objects.create(title=my_new_title)
     context = {}
     return render(request, "product/product_create.html", context)
 
