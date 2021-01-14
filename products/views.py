@@ -5,16 +5,16 @@ from .models import Product
 # Create your views here.
 
 # use django model form to save data
-# def product_create_view(request):
-#     form = ProductForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#         form = ProductForm()
-#     obj = Product.objects.get(id=1)
-#     context = {
-#         'form': form
-#     }
-#     return render(request, "product/product_create.html", context)
+def product_create_view(request):
+    form = ProductForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        form = ProductForm()
+    obj = Product.objects.get(id=1)
+    context = {
+        'form': form
+    }
+    return render(request, "product/product_create.html", context)
 
 # use raw html form to save data
 # def product_create_view(request):
@@ -27,21 +27,21 @@ from .models import Product
 #     context = {}
 #     return render(request, "product/product_create.html", context)
 
-# use django form to save data 
-def product_create_view(request):
-    my_form = RawProductForm()
-    if request.method == "POST":
-        my_form = RawProductForm(request.POST)
-        if my_form.is_valid():
-            # now the data is good
-            print('cleaned_data11111', my_form.cleaned_data)
-            Product.objects.create(**my_form.cleaned_data)
-        else:
-            print('form_errors1111', my_form.errors)
-    context = {
-        "form": my_form
-    }
-    return render(request, "product/product_create.html", context)
+# use django form to save data ,has validation
+# def product_create_view(request):
+#     my_form = RawProductForm()
+#     if request.method == "POST":
+#         my_form = RawProductForm(request.POST)
+#         if my_form.is_valid():
+#             # now the data is good
+#             print('cleaned_data11111', my_form.cleaned_data)
+#             Product.objects.create(**my_form.cleaned_data)
+#         else:
+#             print('form_errors1111', my_form.errors)
+#     context = {
+#         "form": my_form
+#     }
+#     return render(request, "product/product_create.html", context)
 
 
 
