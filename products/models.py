@@ -7,3 +7,6 @@ class Product(models.Model):
 	price 		= models.DecimalField(decimal_places=2, max_digits=1000)
 	summary 	= models.TextField(default='This is cool')
 	featured	= models.BooleanField(default=True) # new added， but exit obj in db doesn't has this value, two option: null=True or default=True
+
+	def get_absolute_url(self):
+		return f"/products/{self.id}/"
