@@ -58,3 +58,16 @@ def product_detail_view(request):
         'object': obj
     }
     return render(request, "product/product_detail.html", context)
+
+def render_initial_data(request):
+    initial_data = {
+        'title': "My title"
+    }
+    obj = Product.objects.get(id=1)
+    form = ProductForm(request.POST or None, initial=initial_data, instance=obj)  # instance is the initial data(obj from db) 
+    if form.is_valid():
+        form.save()
+    context = {
+        'form': form
+    }
+    return render(request, "product/product_create.html", context)
